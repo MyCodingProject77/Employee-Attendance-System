@@ -1,0 +1,67 @@
+
+
+
+
+         Save Code
+
+             SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=employeedb;Integrated Security=True");
+            con.Open();
+            SqlCommand cnn = new SqlCommand("insert into emptab values(@employeeid,@employeename,@position,@status,@datecreated)", con);
+            cnn.Parameters.AddWithValue("@EmployeeID", int.Parse(textBox1.Text));
+            cnn.Parameters.AddWithValue("@EmployeeName", textBox2.Text);
+            cnn.Parameters.AddWithValue("@Position", textBox3.Text);
+            cnn.Parameters.AddWithValue("@Status", textBox4.Text);
+            cnn.Parameters.AddWithValue("@DateCreated", dateTimePicker1.Value);
+            cnn.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Record Saved Successfully", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+   
+
+
+          Add Code
+
+
+         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=employeedb;Integrated Security=True");
+            con.Open();
+            SqlCommand cnn = new SqlCommand("select * from emptab", con);
+            SqlDataAdapter da = new SqlDataAdapter(cnn);
+            DataTable table = new DataTable();
+            da.Fill(table);
+            dataGridView1.DataSource = table;
+
+
+
+        
+
+        Delete Code
+
+
+        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=employeedb;Integrated Security=True");
+            con.Open();
+            SqlCommand cnn = new SqlCommand("delete emptab where employeeid=@employeeid", con);
+            cnn.Parameters.AddWithValue("@EmployeeID", int.Parse(textBox1.Text));
+            
+            cnn.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Record Deleted Successfully", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+      
+         Form Load Code
+
+
+         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=employeedb;Integrated Security=True");
+            con.Open();
+            SqlCommand cnn = new SqlCommand("select * from emptab", con);
+            SqlDataAdapter da = new SqlDataAdapter(cnn);
+            DataTable table = new DataTable();
+            da.Fill(table);
+            dataGridView1.DataSource = table;
+
+
+
+
+   
+
